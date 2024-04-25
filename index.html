@@ -4,13 +4,179 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style/css_global.css">
+  <link rel="stylesheet" href="app/style/css/css_global.min.css">
   <title>Github Profiler</title>
 </head>
 
 <body>
-  <div class="root"></div>
-  <script type="module" src="app/main.js"></script>
+  <!-- <div class="root"></div> -->
+  <!-- <script type="module" src="app/main.js"></script> -->
+  <nav className="nav-github">
+    <div className="nav-content">
+      <span className="logo-svg">
+        <img src="./app/assets/logo_github.svg" alt="">
+      </span>
+      <span className="logo-detail">/</span>
+      <span className="name-page">Profile</span>
+    </div>
+  </nav>
+  <section className="grid-content">
+    <header className="header-perfil">
+      <div className="photo-content">
+        <img className="user-perfil" src="https://avatars.githubusercontent.com/renyzeraa " alt="Foto Perfil do Usuário" />
+        <span className="status-perfil">👾</span>
+      </div>
+      <h1 className="name-perfil">Renan</h1>
+      <p className="text-perfil">Programador</p>
+      <button className="infos-add-perfil">
+        Informações Adicionais
+        <span className="button-info">
+          <img src="./app/assets/icon_chevron_down.svg" alt="ícone flecha para baixo">
+        </span>
+      </button>
+      <div className="details-perfil">
+        <ul className="list-details">
+          <li>
+            <img src="./app/assets/icon_enterprise.svg" alt="ícone de empresa">
+            <span>Ipm Sistemas</span>
+          </li>
+          <li>
+            <img src="./app/assets/icon_pin_map.svg" alt="ícone de localização">
+            <span>Rio do Sul</span>
+          </li>
+          <li>
+            <img src="./app//assets/icon_chain.svg" alt="ícone de corrente">
+            <span>renan.com.br</span>
+          </li>
+          <li>
+            <img src="./app/assets/icon_instagram.svg" alt="ícone de instagram">
+            <span>renansilva.dev</span>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <article className="content-repo">
+      <div className="toggle-option">
+        <!-- onClick={()=> triggerAbaAtivo(true, true)} -->
+        <button className="button-option">
+          <img src="./app/assets/icon_bookmark.svg" alt="">
+          Repositories
+          <span className="count">{repos.length}</span>
+        </button>
+        <!-- onClick={()=> triggerAbaAtivo(true, false)} -->
+        <button className="button-option">
+          <img src="./app/assets/icon_star.svg" alt="">
+          Starred
+          <span className="count">{starreds.length}</span>
+        </button>
+      </div>
+      <div className="search-content">
+        <div className="button-content">
+          <!--onClick={()=> { bListTypeActive ? setListTypeActive(false) : bListLangActive ? toggleListTypeActive() : setListTypeActive(true) }}-->
+          <button className="button-prefs">
+            <img src="./app/assets/icon_chevron_down.svg" alt="ícone de divisa"> Type
+            <div className="prefs-list active">
+              <header className="list-header">
+                <h1 className="list-title">Type</h1>
+                <button>
+                  <img src="./app/assets/icon_close.svg" alt="ícone de fechar">
+                </button>
+              </header>
+
+              <ul className="list-options">
+                <!-- 
+                  arrumar aqui
+                  {listType &&
+                listType.map(type => (
+                <li>
+                  <input type="checkbox" id={type} />
+                  <span>{type}</span>
+                </li>
+                ))} -->
+              </ul>
+            </div>
+          </button>
+          <!--onClick={()=> {
+            bListLangActive
+            ? setListLangActive(false)
+            : bListTypeActive
+            ? toggleListLangActive()
+            : setListLangActive(true)
+            }}-->
+          <button className="button-prefs">
+            <img src="./app/assets/icon_chevron_down.svg" alt="ícone de abrir">
+            Language
+            <div className="prefs-list active">
+              <header className="list-header">
+                <h1 className="list-title">Language</h1>
+                <button>
+                  <img src="./app/assets/icon_close.svg" alt="ícone de fechar">
+                </button>
+              </header>
+
+              <ul className="list-options">
+                <!--
+                  ARRUMAR AQ
+                   {listLang &&
+                listLang.map(lang => (
+                <li>
+                  <input type="checkbox" id={lang} />
+                  <span>{lang}</span>
+                </li>
+                ))} -->
+              </ul>
+            </div>
+          </button>
+        </div>
+        <span>
+          <BiSearch />
+          <input type="text" placeholder="Search Here" className="ipt-search-repo" onKeyPress={handleKeyPress} />
+        </span>
+      </div>
+      <ul className="content-projects repositories active">
+        <!-- 
+            ARRUMAR AQ
+          {repos.map(repo => (
+        <li className="card-project" key={repo.id}>
+          <h2>{repo.name}</h2>
+          <p>{repo.description}</p>
+          <div className="stats">
+            <span>
+              <FaStar />
+              {repo.stargazers_count}
+            </span>
+
+            <span>
+              <BiGitBranch />
+              {repo.forks}
+            </span>
+          </div>
+        </li>
+        ))} -->
+      </ul>
+      <ul className="content-projects starred active">
+        <!-- 
+            ARRUMAR AQ
+          {starreds.map(star => (
+        <li className="card-project" key={star.id}>
+          <h2>{star.name}</h2>
+          <p>{star.description}</p>
+          <div className="stats">
+            {star.language ? (
+            <span>{star.language}</span>
+            ) : (
+            ''
+            )}
+            <span>
+              <BiGitBranch />
+              {star.forks}
+            </span>
+          </div>
+        </li>
+        ))} -->
+      </ul>
+    </article>
+  </section>
 </body>
 
 </html>
