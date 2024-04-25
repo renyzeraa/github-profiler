@@ -28,16 +28,17 @@
     --color-base-red-800: #FE354D;
     --color-base-red-500: #FD8C73;
 
-    //fonts
-    --font-base-roboto: "Roboto";
-    --font-extra-bold: 800;
-    --font-bold: 700;
-    --font-semi-bold: 600;
-    --font-medium: 500;
-    --font-normal: 400;
-    --font-light: 300;
-    --font-extra-light: 200;
-    --font-thin: 100;
+    // fonts
+    --font-base-roboto: "Roboto", sans-serif;
+    // font weight
+    --font-w-extra-bold: 800;
+    --font-w-bold: 700;
+    --font-w-semi-bold: 600;
+    --font-w-medium: 500;
+    --font-w-normal: 400;
+    --font-w-light: 300;
+    --font-w-extra-light: 200;
+    --font-w-thin: 100;
 
     // 1rem = 10px
     font-size: 62.5%
@@ -87,12 +88,13 @@ a {
 
 // header
 .estrutura-header {
-    background-color: var(--color-base-bg-700);
     padding: 2.1rem;
+    background-color: var(--color-base-bg-700);
 
     > .estrutura-header-itens {
         display: flex;
         align-items: center;
+        justify-content: flex-start;
         gap: 2.2rem;
         color: var(--color-base-bg-200);
 
@@ -101,10 +103,86 @@ a {
         }
         
         > .estrutura-header-subject {
-            font-family: var(--font-base-roboto);
-            font-weight: var(--font-light);
+            font-weight: var(--font-w-thin);
         }
     }
 }
 
+.estrutura-container {
+    display: grid;
+}
 
+// user profile
+
+.estrutura-container-user-profile {
+    margin: 4rem 0 4rem;
+    display: grid;
+
+    > .estrutura-container-user-avatar {
+        margin: 0 auto 1.6rem;
+        max-width: 10.4rem;
+    }
+
+    > .estrutura-container-user-name {
+        text-align: center;
+        font-size: 2rem; 
+        margin-bottom: 0.4rem;
+    }
+
+    > .estrutura-container-user-bio {
+        margin: 0 auto;
+        text-align: center;
+        font-size: 1.4rem;
+        color: var(--color-base-text-500);
+        margin-bottom: 2.4rem;
+        max-width: 21.7rem;
+    }
+
+    > .estrutura-container-user-button {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.6rem;
+
+        > .estrutura-container-user-button-icon {
+            &.active {
+                transform: rotate(180deg);
+                transition: transform 1s;
+            }
+        }
+
+        > .estrutura-container-user-button-text {
+            color: var(--color-base-blue-400);
+            font-family: var(--font-base-roboto);
+            font-size: 1.4rem;
+        }
+    }
+
+    > .estrutura-container-user-extra-infos {
+        display: none;
+        margin-top: 1.4rem;
+        padding: 1.6rem;
+        border-radius: 1rem;
+        color: var(--color-base-blue-400);
+        background-color: var(--color-base-bg-300);
+        
+        &.active {
+            display: block;
+        }
+
+        > .estrutura-container-user-list-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.6rem;
+            
+            > .estrutura-container-user-list-info-item {
+                display: grid;
+                align-items: center;
+                grid-template-columns: 2rem 1fr;
+                gap: 0.5rem;
+            }
+        }
+    }
+}
