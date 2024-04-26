@@ -90,6 +90,7 @@ a {
 .estrutura-header {
     padding: 2.1rem;
     background-color: var(--color-base-bg-700);
+    display: none;
 
     > .estrutura-header-itens {
         display: flex;
@@ -115,8 +116,9 @@ a {
 // user profile
 
 .estrutura-container-user-profile {
-    margin: 4rem 0 4rem;
+    margin: 4rem auto 0;
     display: grid;
+    max-width: 42.8rem;
 
     > .estrutura-container-user-avatar {
         margin: 0 auto 1.6rem;
@@ -167,6 +169,10 @@ a {
         border-radius: 1rem;
         color: var(--color-base-blue-400);
         background-color: var(--color-base-bg-300);
+
+        &.showing {
+            background-color: none;
+        }
         
         &.active {
             display: block;
@@ -185,4 +191,127 @@ a {
             }
         }
     }
+}
+
+.estrutura-data-container {
+    > .estrutura-data-container-selection {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem; 
+
+        > .estrutura-data-button {
+            padding: 0.8rem;
+            
+            opacity: 55%;
+            position: relative;
+            
+            &::after {
+                content: '';
+                width: 0%;
+                height: 2px;
+                background-color: var(--color-base-red-500);
+                position: relative;
+                bottom: -0.8rem;
+                left: -0.3rem;
+                display: block;
+                transition: width 0.2s;
+            }
+
+            &:hover {
+                opacity: 1;
+            }
+
+            &:hover::after {
+                padding-inline: 0.8rem;
+                width: 95%;
+                transition: opacity 0.8s, width 0.7s;
+            }
+
+            >.estrutura-data-button-content {
+                display: flex;
+            align-items: center;
+
+                >.estrutura-data-button-description {
+                    margin: 0 1.6rem 0 0.8rem;
+                    font-family: var(--font-base-roboto);
+                    font-size: 1.6rem;
+                }
+    
+                >.estrutura-data-button-amount {
+                    padding: 0.4rem 1.2rem;
+                    color: var(--color-base-text-600);
+                    background-color: var(--color-base-bg-300);
+                    border: 1px solid var(--color-base-text-400);
+                    border-radius: 2rem;
+                }
+            }
+        }
+    } 
+
+    > .estrutura-data-container-filter {
+        max-width: 42.8rem;
+        margin: 2.4rem auto 3.2rem;
+        display: flex;
+        align-items: center;
+        background-color: var(--color-base-bg-300);
+        border-radius: 0.5rem;
+        padding: 0.8rem;
+
+        >.estrutura-data-button-filter {
+            display: flex;
+            align-items: center; 
+            padding: 0.8rem;
+            background: linear-gradient(90deg, var(--color-base-blue-500) -4%, var(--color-base-blue-400) 97%);
+            border-radius: 2rem;
+
+            &:hover {
+                background: linear-gradient(90deg, var(--color-base-blue-500) 20%, var(--color-base-blue-400) 140%);
+            }
+
+            &:nth-child(1) {
+                margin-right: 0.8rem;
+            }
+
+            > .estrutura-data-button-filter-icon {
+                filter: brightness(50);
+                margin-right: 1rem;
+                padding-left: 0.3rem;
+            }
+
+            >.estrutura-data-button-filter-type {
+                color: var(--color-base-bg-000);
+                font-family: var(--font-base-roboto);
+                font-size: 1.4rem;
+                padding-right: 1.4rem;
+                font-weight: var(--font-w-light);
+            }
+
+            &.search {
+                background: none;
+                margin-left: auto;
+
+                &:hover {
+                    background-color: var(--color-base-text-200);
+                    transition: background-color 0.9s;
+                }
+            }
+        }
+    }
+}
+
+/* Mobile  */
+@media only screen and (max-width: 480px) {
+}
+
+/* Tablet */
+@media only screen and (min-width: 728px) {
+    .estrutura-header {
+        display: block;
+    }
+}
+
+/* Desktop */
+@media only screen and (min-width: 1024px) {
+
 }

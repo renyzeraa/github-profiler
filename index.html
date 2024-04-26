@@ -63,8 +63,58 @@
         </ul>
       </article>
     </aside>
-    <section>
-      <h1>teste</h1>
+    <section id="filter" class="estrutura-data-container">
+      <div class="estrutura-data-container-selection">
+        <button class="estrutura-data-button type-repo">
+          <div class="estrutura-data-button-content">
+            <img src="./app/assets/icon_bookmark.svg" alt="ícone de repositórios">
+            <span class="estrutura-data-button-description">
+              Repositories
+            </span>
+            <span class="estrutura-data-button-amount">12</span>
+          </div>
+        </button>
+        <button class="estrutura-data-button type-starred">
+          <div class="estrutura-data-button-content">
+            <img src="./app/assets/icon_star.svg" alt="ícone de estrela">
+            <span class="estrutura-data-button-description">
+              Starred
+            </span>
+            <span class="estrutura-data-button-amount">23</span>
+          </div>
+        </button>
+      </div>
+      <div class="estrutura-data-container-filter">
+        <button class="estrutura-data-button-filter" title="Clique aqui para aplicar filtro de preferência de tipo.">
+          <img class="estrutura-data-button-filter-icon" src="./app/assets/icon_chevron_down.svg" alt="ícone de abrir">
+          <span class="estrutura-data-button-filter-type">Type</span>
+        </button>
+        <button class="estrutura-data-button-filter" title="Clique aqui para aplicar filtro pelo linguagem de programação.">
+          <img class="estrutura-data-button-filter-icon" src="./app/assets/icon_chevron_down.svg" alt="ícone de abrir">
+          <span class="estrutura-data-button-filter-type">Language</span>
+        </button>
+        <button class="estrutura-data-button-filter search" title="Clique aqui para pesquisar.">
+          <img src="./app/assets/icon_search.svg" alt="ícone de pesquisar">
+        </button>
+      </div>
+    </section>
+    <section id="data" class="estrutura-data-container">
+      <div class="estrutura-data-card-item">
+        <h2 class="estrutura-data-card-title">
+          projeto de 27 dias
+        </h2>
+        <span class="estrutura-data-card-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis vel etiam tellus velit pellentesque scelerisque ut risus.</span>
+        <div class="estrutura-data-card-reputation">
+          <span class="estrutura-data-card-reputation-starred">
+            <img src="./app/assets/icon_star_filled.svg" alt="ícone de estrela">
+            1.569
+          </span>
+          <span class="estrutura-data-card-reputation-forks">
+            <img src="./app/assets/icon_branch_fork.svg" alt="ícone de ramificação">
+            142
+          </span>
+        </div>
+      </div>
     </section>
   </main>
 
