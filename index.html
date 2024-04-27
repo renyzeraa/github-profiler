@@ -11,6 +11,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
   <title>Github Profiler</title>
+
+  <meta name="keywords" content="GitHub, usuário, repositórios, pesquisa, username, perfil, desenvolvedor, código, open source, user, repositories, search, username, profile, developer, code">
+  <meta name="description" content="Explore usuários e seus repositórios no GitHub facilmente com nossa ferramenta de busca intuitiva. Basta inserir um nome de usuário para descobrir o perfil de um desenvolvedor e seus projetos de código aberto.">
+  <meta name="author" content="Renan Leandro da Silva - github.com/renyzeraa">
+
 </head>
 
 <body class="estrutura">
@@ -22,9 +27,12 @@
       <span class="estrutura-header-subject">Profile</span>
     </div>
   </header>
-  <main class="container-global estrutura-container">
+  <main data-id="main" class="container-global estrutura-container">
     <aside class="estrutura-container-user-profile">
-      <img class="estrutura-container-user-avatar" src="./app/assets/avatar_exemplo.svg" alt="Avatar do usuário">
+      <div class="estrutura-container-user-avatar">
+        <img class="estrutura-container-user-avatar-image" src="https://avatars.githubusercontent.com/u/101990719?v=4" alt="Avatar do usuário">
+      </div>
+
       <h2 class="estrutura-container-user-name">Usuário Nd</h2>
       <span class="estrutura-container-user-bio">
         Head development team Front-End
@@ -85,29 +93,12 @@
         </button>
       </div>
       <div class="estrutura-data-container-type-lang">
-        <button class="estrutura-data-button-filter" title="Clique aqui para aplicar filtro de preferência de tipo.">
+        <button class="estrutura-data-button-filter filter-type" title="Clique aqui para aplicar filtro de preferência de tipo.">
           <input type="hidden" data-filter="">
           <img class="estrutura-data-button-filter-icon" src="./app/assets/icon_chevron_down.svg" alt="ícone de abrir">
           <span class="estrutura-data-button-filter-type">Type</span>
-          <!-- <div class="estrutura-data-container-list-filter">
-            <header class="estrutura-data-container-header">
-              <span class="estrutura-data-container-header-title">
-                Type
-              </span>
-              <button class="estrutura-data-container-header-close">
-                <img src="./app/assets/icon_close.svg" alt="ícone de fechar menu de filtros">
-              </button>
-            </header>
-            <ul class="estrutura-data-container-filter-list">
-              <li><input class="checkbox-filter" type="checkbox" name="1">All</li>
-              <li><input class="checkbox-filter" type="checkbox" name="2">Sources</li>
-              <li><input class="checkbox-filter" type="checkbox" name="3">Forks</li>
-              <li><input class="checkbox-filter" type="checkbox" name="4">Archived</li>
-              <li><input class="checkbox-filter" type="checkbox" name="5">Mirrors</li>
-            </ul>
-          </div> -->
         </button>
-        <button class="estrutura-data-button-filter" title="Clique aqui para aplicar filtro pelo linguagem de programação.">
+        <button class="estrutura-data-button-filter filter-language" title="Clique aqui para aplicar filtro pelo linguagem de programação.">
           <input type="hidden" data-filter="">
           <img class="estrutura-data-button-filter-icon" src="./app/assets/icon_chevron_down.svg" alt="ícone de abrir">
           <span class="estrutura-data-button-filter-type">Language</span>
@@ -115,6 +106,7 @@
         <button class="estrutura-data-button-filter search" title="Clique aqui para pesquisar.">
           <img src="./app/assets/icon_search.svg" alt="ícone de pesquisar">
         </button>
+        <input type="text" class="estrutura-campo-filter" placeholder="Search Here">
       </div>
     </header>
 
@@ -186,7 +178,7 @@
         <h2 class="estrutura-data-card-title">
           ignite
         </h2>
-        <p class="estrutura-data-card-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis vel etiam tellus velit pellentesque scelerisque ut risus.</p>
+        <p class="estrutura-data-card-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis vel etiam tellus velit pellentesque scelerisque ut risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis vel etiam tellus velit pellentesque scelerisque ut risus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis vel etiam tellus velit pellentesque </p>
         <div class="estrutura-data-card-reputation">
           <span class="estrutura-data-card-reputation-infos">
             Node.js
@@ -198,7 +190,51 @@
         </div>
       </article>
     </section>
+
+    <!-- LISTA DO MOBILE -->
+
+    <!-- <section class="estrutura-context-container">
+      <div class="estrutura-context-list-filter">
+        <header class="estrutura-data-container-header">
+          <h2 class="estrutura-data-container-header-title">
+            Type
+          </h2>
+          <button class="estrutura-data-container-header-close">
+            <img src="./app/assets/icon_close.svg" alt="ícone de fechar menu de filtros">
+          </button>
+        </header>
+        <ul class="estrutura-data-container-filter-list">
+          <li class="filter-item-list"><input class="checkbox-filter" type="checkbox" name="1">All</li>
+          <li class="filter-item-list"><input class="checkbox-filter" type="checkbox" name="2">Sources</li>
+          <li class="filter-item-list"><input class="checkbox-filter" type="checkbox" name="3">Forks</li>
+          <li class="filter-item-list"><input class="checkbox-filter" type="checkbox" name="4">Archived</li>
+          <li class="filter-item-list"><input class="checkbox-filter" type="checkbox" name="5">Mirrors</li>
+        </ul>
+      </div>
+    </section> -->
+
+    <!-- LISTA TABLET PRA CIMA -->
+
+    <!-- <section class="estrutura-context-container">
+      <div class="estrutura-context-list-filter">
+        <ul class="estrutura-data-container-filter-list">
+          <li class="filter-item-list"><input class="checkbox-filter" type="checkbox" name="1">All</li>
+          <li class="filter-item-list"><input class="checkbox-filter" type="checkbox" name="2">Sources</li>
+          <li class="filter-item-list"><input class="checkbox-filter" type="checkbox" name="3">Forks</li>
+          <li class="filter-item-list"><input class="checkbox-filter" type="checkbox" name="4">Archived</li>
+          <li class="filter-item-list"><input class="checkbox-filter" type="checkbox" name="5">Mirrors</li>
+        </ul>
+      </div>
+    </section> -->
+
+
   </main>
+
+  <!-- LOADING -->
+  <!-- <div class="estrutura-loading-overlay">
+    <div class="estrutura-loading-spinner"></div>
+    <span class="estrutura-loading-text">Carregando...</span>
+  </div> -->
 
   <script type="module" src="app/main.js"></script>
 </body>
