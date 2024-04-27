@@ -15,13 +15,7 @@
 
 <body class="estrutura">
   <!-- <div class="root"></div> -->
-  <header class="estrutura-header">
-    <div class="container-global estrutura-header-itens">
-      <img src="./app/assets/logo_github.svg" alt="">
-      <span class="estrutura-header-separator">/</span>
-      <span class="estrutura-header-subject">Profile</span>
-    </div>
-  </header>
+
   <main class="container-global estrutura-container">
     <aside class="estrutura-container-user-profile">
       <img class="estrutura-container-user-avatar" src="./app/assets/avatar_exemplo.svg" alt="Avatar do usuário">
@@ -63,7 +57,7 @@
         </ul>
       </article>
     </aside>
-    <section id="filter" class="estrutura-data-container">
+    <header class="estrutura-data-container estrutura-data-container-filter">
       <div class="estrutura-data-container-selection">
         <button class="estrutura-data-button type-repo">
           <div class="estrutura-data-button-content">
@@ -84,12 +78,31 @@
           </div>
         </button>
       </div>
-      <div class="estrutura-data-container-filter">
+      <div class="estrutura-data-container-type-lang">
         <button class="estrutura-data-button-filter" title="Clique aqui para aplicar filtro de preferência de tipo.">
+          <input type="hidden" data-filter="">
           <img class="estrutura-data-button-filter-icon" src="./app/assets/icon_chevron_down.svg" alt="ícone de abrir">
           <span class="estrutura-data-button-filter-type">Type</span>
+          <!-- <div class="estrutura-data-container-list-filter">
+            <header class="estrutura-data-container-header">
+              <span class="estrutura-data-container-header-title">
+                Type
+              </span>
+              <button class="estrutura-data-container-header-close">
+                <img src="./app/assets/icon_close.svg" alt="ícone de fechar menu de filtros">
+              </button>
+            </header>
+            <ul class="estrutura-data-container-filter-list">
+              <li><input class="checkbox-filter" type="checkbox" name="1">All</li>
+              <li><input class="checkbox-filter" type="checkbox" name="2">Sources</li>
+              <li><input class="checkbox-filter" type="checkbox" name="3">Forks</li>
+              <li><input class="checkbox-filter" type="checkbox" name="4">Archived</li>
+              <li><input class="checkbox-filter" type="checkbox" name="5">Mirrors</li>
+            </ul>
+          </div> -->
         </button>
         <button class="estrutura-data-button-filter" title="Clique aqui para aplicar filtro pelo linguagem de programação.">
+          <input type="hidden" data-filter="">
           <img class="estrutura-data-button-filter-icon" src="./app/assets/icon_chevron_down.svg" alt="ícone de abrir">
           <span class="estrutura-data-button-filter-type">Language</span>
         </button>
@@ -97,13 +110,14 @@
           <img src="./app/assets/icon_search.svg" alt="ícone de pesquisar">
         </button>
       </div>
-    </section>
-    <section id="data" class="estrutura-data-container">
-      <div class="estrutura-data-card-item">
+    </header>
+
+    <section id="repositories" style="display: none;" class="estrutura-data-container-cards">
+      <article class="estrutura-data-card-item">
         <h2 class="estrutura-data-card-title">
           projeto de 27 dias
         </h2>
-        <span class="estrutura-data-card-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis vel etiam tellus velit pellentesque scelerisque ut risus.</span>
+        <p class="estrutura-data-card-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis vel etiam tellus velit pellentesque scelerisque ut risus.</p>
         <div class="estrutura-data-card-reputation">
           <span class="estrutura-data-card-reputation-starred">
             <img src="./app/assets/icon_star_filled.svg" alt="ícone de estrela">
@@ -114,7 +128,69 @@
             142
           </span>
         </div>
-      </div>
+      </article>
+    </section>
+    <section id="starred" class="estrutura-data-container-cards">
+      <article class="estrutura-data-card-item">
+        <h2 class="estrutura-data-card-title">
+          api rest em node
+        </h2>
+        <p class="estrutura-data-card-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis vel etiam tellus velit pellentesque scelerisque ut risus.</p>
+        <div class="estrutura-data-card-reputation">
+          <span class="estrutura-data-card-reputation-infos">
+            Javascript
+          </span>
+          <span class="estrutura-data-card-reputation-starred">
+            <img src="./app/assets/icon_branch_fork.svg" alt="ícone de ramificação">
+            999
+          </span>
+        </div>
+      </article>
+      <article class="estrutura-data-card-item">
+        <h2 class="estrutura-data-card-title">
+          recriando netflix
+        </h2>
+        <p class="estrutura-data-card-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis vel etiam tellus velit pellentesque scelerisque ut risus.</p>
+        <div class="estrutura-data-card-reputation">
+          <span class="estrutura-data-card-reputation-infos">
+            TypeScript
+          </span>
+          <span class="estrutura-data-card-reputation-starred">
+            <img src="./app/assets/icon_branch_fork.svg" alt="ícone de ramificação">
+            11
+          </span>
+        </div>
+      </article>
+      <article class="estrutura-data-card-item">
+        <h2 class="estrutura-data-card-title">
+          explorer
+        </h2>
+        <p class="estrutura-data-card-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis vel etiam tellus velit pellentesque scelerisque ut risus.</p>
+        <div class="estrutura-data-card-reputation">
+          <span class="estrutura-data-card-reputation-infos">
+            C++
+          </span>
+          <span class="estrutura-data-card-reputation-starred">
+            <img src="./app/assets/icon_branch_fork.svg" alt="ícone de ramificação">
+            32
+          </span>
+        </div>
+      </article>
+      <article class="estrutura-data-card-item">
+        <h2 class="estrutura-data-card-title">
+          ignite
+        </h2>
+        <p class="estrutura-data-card-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis vel etiam tellus velit pellentesque scelerisque ut risus.</p>
+        <div class="estrutura-data-card-reputation">
+          <span class="estrutura-data-card-reputation-infos">
+            Node.js
+          </span>
+          <span class="estrutura-data-card-reputation-starred">
+            <img src="./app/assets/icon_branch_fork.svg" alt="ícone de ramificação">
+            123.123
+          </span>
+        </div>
+      </article>
     </section>
   </main>
 
