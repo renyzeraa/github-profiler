@@ -117,8 +117,9 @@ a {
 
 .estrutura-container-user-profile {
     margin: 4rem auto 0;
-    display: grid;
-    max-width: 42.8rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 
     > .estrutura-container-user-avatar {
         margin: 0 auto 1.6rem;
@@ -148,11 +149,9 @@ a {
         gap: 1rem;
         padding: 0.6rem;
 
-        > .estrutura-container-user-button-icon {
-            &.active {
-                transform: rotate(180deg);
-                transition: transform 1s;
-            }
+        > .estrutura-container-user-button-icon.active {
+            transform: rotate(180deg);
+            transition: transform 1s;
         }
 
         > .estrutura-container-user-button-text {
@@ -169,10 +168,6 @@ a {
         border-radius: 1rem;
         color: var(--color-base-blue-400);
         background-color: var(--color-base-bg-300);
-
-        &.showing {
-            background-color: none;
-        }
         
         &.active {
             display: block;
@@ -193,12 +188,26 @@ a {
     }
 }
 
-.estrutura-data-container {
+// area de filtros
+
+.estrutura-data-container-list-filter {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-base-bg-100);
+    top: 0;
+    left: 0;
+    padding: 2.4rem;
+    z-index: 99;
+}
+
+.estrutura-data-container-filter {
     > .estrutura-data-container-selection {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 2rem; 
+        margin-top: 4rem;
 
         > .estrutura-data-button {
             padding: 0.8rem;
@@ -230,7 +239,7 @@ a {
 
             >.estrutura-data-button-content {
                 display: flex;
-            align-items: center;
+                align-items: center;
 
                 >.estrutura-data-button-description {
                     margin: 0 1.6rem 0 0.8rem;
@@ -247,11 +256,11 @@ a {
                 }
             }
         }
-    } 
-
-    > .estrutura-data-container-filter {
-        max-width: 42.8rem;
-        margin: 2.4rem auto 3.2rem;
+    }
+ 
+    > .estrutura-data-container-type-lang {
+        width: 100%;
+        margin: 2.4rem auto 0;
         display: flex;
         align-items: center;
         background-color: var(--color-base-bg-300);
@@ -300,6 +309,65 @@ a {
     }
 }
 
+// cards
+.estrutura-data-container-cards {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    >.estrutura-data-card-item {
+        display: grid;
+        justify-content: start;
+        gap: 0.9rem;
+        width: 100%;
+        font-family: var(--font-base-roboto);
+        margin: 3.2rem 0;
+    
+        &::after {
+            content: " ";
+            padding-inline: 0.8rem;
+            width: calc(100% - 2.4rem);
+            height: 1px;
+            background-color: var(--color-base-bg-300);
+            position: relative;
+            bottom: -3.2rem;
+            display: block;
+        }
+
+        &:last-child::after {
+            display: none;
+        }
+
+        >.estrutura-data-card-title {
+            font-size: 1.8rem;
+            font-weight: var(--font-w-normal);
+        }
+ 
+        >.estrutura-data-card-description {
+            font-size: 1.4rem;
+            color: var(--color-base-text-500);
+            padding-right: 0.8rem;
+        }
+    
+        >.estrutura-data-card-reputation {
+            display: flex;
+            gap: 3.2rem;
+
+            >.estrutura-data-card-reputation-starred, >.estrutura-data-card-reputation-forks {
+                display: flex;
+                gap: 0.8rem;
+            }
+        }
+    }
+
+    &#starred {
+        >.estrutura-data-card-item >.estrutura-data-card-reputation {
+            display: grid;
+            grid-template-columns: 8rem auto;
+        }
+    }
+}
+
 /* Mobile  */
 @media only screen and (max-width: 480px) {
 }
@@ -308,6 +376,28 @@ a {
 @media only screen and (min-width: 728px) {
     .estrutura-header {
         display: block;
+    }
+
+    .container-global {
+        grid-auto-columns: 25rem 1fr;
+        grid-auto-rows: auto;
+
+        >.estrutura-container-user-profile {
+            grid-row: span 2;
+
+            >.estrutura-container-user-button {
+                display: none;
+            }
+
+            >.estrutura-container-user-extra-infos {
+                display: block;
+            }
+        }
+
+        >.estrutura-data-container-filter , >.estrutura-data-container-cards{
+            margin-left: 2.4rem;
+            grid-column: 2;
+        }
     }
 }
 
