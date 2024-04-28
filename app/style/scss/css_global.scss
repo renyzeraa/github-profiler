@@ -235,10 +235,7 @@ a {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 4rem;
-
-    > .estrutura-data-container-header {
-      font-size: 2.4rem;
-    }
+    font-size: 2.4rem;
   }
 
   > .estrutura-data-container-filter-list {
@@ -616,11 +613,10 @@ input[type='checkbox']:checked::before {
       grid-column: 2;
     }
 
-    .estrutura-context-list-filter {
-      > .estrutura-data-container-header {
-        display: none;
-      }
+    .estrutura-context-list-filter > .estrutura-data-container-header {
+      display: none;
     }
+
     > .estrutura-context-container {
       width: 24rem;
       height: auto;
