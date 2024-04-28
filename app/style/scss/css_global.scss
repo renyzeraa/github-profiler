@@ -421,6 +421,11 @@ input[type='checkbox']:checked::before {
     width: 100%;
     font-family: var(--font-base-roboto);
     margin: 3.2rem 0;
+    // animação
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.6s, transform 0.8s;
+    animation: slideFromRight 0.5s forwards;
 
     &::after {
       content: ' ';
@@ -452,8 +457,7 @@ input[type='checkbox']:checked::before {
       display: flex;
       gap: 3.2rem;
 
-      > .estrutura-data-card-reputation-starred,
-      > .estrutura-data-card-reputation-forks {
+      > .estrutura-data-card-reputation-info {
         display: flex;
         gap: 0.8rem;
       }
@@ -503,6 +507,17 @@ input[type='checkbox']:checked::before {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes slideFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
@@ -601,6 +616,11 @@ input[type='checkbox']:checked::before {
       grid-column: 2;
     }
 
+    .estrutura-context-list-filter {
+      > .estrutura-data-container-header {
+        display: none;
+      }
+    }
     > .estrutura-context-container {
       width: 24rem;
       height: auto;
