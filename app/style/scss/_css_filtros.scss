@@ -128,14 +128,17 @@ $context-top: 0;
   position: fixed;
   width: 100%;
   height: 100%;
-  background-color: var(--color-base-bg-100);
   top: 0;
   left: 0;
   padding: 2.4rem;
   z-index: 99;
+  pointer-events: none;
 }
 
 .estrutura-context-list-filter {
+  background-color: var(--color-base-bg-100);
+  pointer-events: all;
+
   > .estrutura-data-container-header {
     display: flex;
     align-items: center;

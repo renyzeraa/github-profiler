@@ -5,12 +5,10 @@
 
   > .estrutura-data-card-item {
     display: grid;
-    justify-content: start;
     gap: 0.9rem;
     width: 100%;
     font-family: var(--font-base-roboto);
     margin: 3.2rem 0;
-    // animação
     opacity: 0;
     transform: translateX(100%);
     transition: opacity 0.6s, transform 0.8s;
@@ -40,6 +38,7 @@
       font-size: 1.4rem;
       color: var(--color-base-text-500);
       padding-right: 0.8rem;
+      text-align: start;
     }
 
     > .estrutura-data-card-reputation {
@@ -49,6 +48,7 @@
       > .estrutura-data-card-reputation-info {
         display: flex;
         gap: 0.8rem;
+        align-items: center;
       }
     }
   }
