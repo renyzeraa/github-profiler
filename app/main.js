@@ -49,6 +49,15 @@ function Componente() {
   }
 
   /**
+   * Retorna se elemento possuí esta classe
+   * @param {String} sClass
+   * @returns {Boolean}
+   */
+  this.hasClass = function (sClass) {
+    return this.getObj().classList.contains(sClass)
+  }
+
+  /**
    * Remove uma classe do componente
    * @param {String} sClass
    * @returns {Componente}
@@ -143,6 +152,15 @@ function Componente() {
     return this
   }
 
+  /**
+   * Remove o elemento do DOM
+   * @returns {Componente}
+   */
+  this.remove = function () {
+    this.getObj().remove()
+    return this
+  }
+
   return this
 }
 
@@ -163,6 +181,16 @@ function ComponenteHTML(sElement) {
   }
 
   /**
+   * Adiciona texto a um elemento HTML como um nó de texto.
+   * @param {String} sText
+   * @returns {ComponenteHTML}
+   */
+  this.appendText = function (sText) {
+    this.getObj().appendChild(document.createTextNode(sText))
+    return this
+  }
+
+  /**
    * Cria elemento html
    */
   function _init() {
@@ -172,7 +200,7 @@ function ComponenteHTML(sElement) {
   _init.apply(this)
   return this
 }
-ComponenteHTML.prototype = Object.create(Componente.prototype)
+ComponenteHTML.prototype = new Componente()
 
 /**
  * Cria componente de loading do site
@@ -245,6 +273,10 @@ function DataCell() {
   this.user = null
   this.repositories = []
   this.starreds = []
+  this.languages = {
+    starreds: [],
+    repositories: []
+  }
 
   /**
    * Define os repositories do usuário
@@ -253,6 +285,7 @@ function DataCell() {
    */
   this.setRepositories = function (aRepos) {
     this.repositories = aRepos
+    this.filterLanguages(aRepos, false)
     return this
   }
 
@@ -289,7 +322,27 @@ function DataCell() {
    */
   this.setStarreds = function (aStarreds) {
     this.starreds = aStarreds
+    this.filterLanguages(aStarreds, true)
     return this
+  }
+
+  /**
+   * Filtra as linguagens presente dentro de um array de repositórios
+   * @param {Array<RepositorioGitHub>} aRepo
+   * @param {Boolean} bStarred
+   */
+  this.filterLanguages = function (aRepo, bStarred) {
+    const aLanguages = []
+    aRepo.forEach(oRepo => {
+      if (!aLanguages.includes(oRepo.language)) {
+        aLanguages.push(oRepo.language)
+      }
+    })
+    if (bStarred) {
+      this.languages.starreds = aLanguages
+    } else {
+      this.languages.repositories = aLanguages
+    }
   }
 
   /**
@@ -298,6 +351,22 @@ function DataCell() {
    */
   this.getStarreds = function () {
     return this.starreds
+  }
+
+  /**
+   * Retorna a quantidade de repositórios favoritos
+   * @returns {Number}
+   */
+  this.getAmountStarreds = function () {
+    return this.starreds.length
+  }
+
+  /**
+   * Retorna a quantidade de repositórios
+   * @returns {Number}
+   */
+  this.getAmountRepositories = function () {
+    return this.repositories.length
   }
 
   /**
@@ -312,6 +381,10 @@ function DataCell() {
   return this
 }
 
+/**
+ * Onde sera inserido todo o HTML da página
+ * @var {HTMLElement}
+ */
 const oRoot = document.querySelector('.estrutura')
 
 /**
@@ -327,8 +400,102 @@ const Icone = {
   star: './app/assets/icon_star.svg',
   search: './app/assets/icon_search.svg',
   starred: './app/assets/icon_star_filled.svg',
-  forks: './app/assets/icon_branch_fork.svg'
+  forks: './app/assets/icon_branch_fork.svg',
+  close: './app/assets/icon_close.svg'
 }
+
+/**
+ * Constante que define os tipos de repositório para uma célula de dados.
+ * @readonly
+ * @enum {string}
+ */
+DataCell.TIPO_REPOSITORIO = {
+  /**
+   * Tipo de repositório para um repositório comum.
+   * @type {string}
+   */
+  REPOSITORIO: 'repository',
+  /**
+   * Tipo de repositório para um repositório favoritado.
+   * @type {string}
+   */
+  FAVORITO: 'starred'
+}
+/**
+ * Constante que define os tipos de pesquisa para uma célula de dados.
+ * @readonly
+ * @enum {number}
+ */
+DataCell.TIPO_PESQUISA = {
+  /**
+   * Tipo de pesquisa por tipo.
+   * @type {number}
+   */
+  TYPE: 1,
+  /**
+   * Tipo de pesquisa por linguagem.
+   * @type {number}
+   */
+  LANGUAGE: 2
+}
+/**
+ * Constante que define os tipos de filtros para uma célula de dados.
+ * @readonly
+ * @type {Array<{ value: number, title: string }>}
+ */
+DataCell.FILTRO_TIPOS = [
+  /**
+   * Filtro para todos os tipos.
+   * @type {Object}
+   * @property {number} value - O valor do filtro.
+   * @property {string} title - O título do filtro.
+   */
+  {
+    value: 1,
+    title: 'All'
+  },
+  /**
+   * Filtro para fontes.
+   * @type {Object}
+   * @property {number} value - O valor do filtro.
+   * @property {string} title - O título do filtro.
+   */
+  {
+    value: 2,
+    title: 'Sources'
+  },
+  /**
+   * Filtro para forks.
+   * @type {Object}
+   * @property {number} value - O valor do filtro.
+   * @property {string} title - O título do filtro.
+   */
+  {
+    value: 3,
+    title: 'Forks'
+  },
+  /**
+   * Filtro para repositórios arquivados.
+   * @type {Object}
+   * @property {number} value - O valor do filtro.
+   * @property {string} title - O título do filtro.
+   */
+  {
+    value: 4,
+    title: 'Archived'
+  },
+  /**
+   * Filtro para repositórios espelhados.
+   * @type {Object}
+   * @property {number} value - O valor do filtro.
+   * @property {string} title - O título do filtro.
+   */
+  {
+    value: 5,
+    title: 'Mirrors'
+  }
+]
+
 /**
  * Realiza a busca dos dados do usuário seleciona na API do github
  * @param {String} sName - nome do usuário
@@ -587,10 +754,94 @@ function criaUserExtraInfos(oAside, oUser) {
 }
 
 /**
+ * Cria um item de lista
+ * @param {Object} oData
+ * @param {String} oData.text - Conteúdo a ser apresentado na lista
+ * @param {String} oData.value - valor do item
+ */
+function ItemLista(oData) {
+  const oItem = new ComponenteHTML('li')
+  oItem.addClass('filter-item-list').text(oData.text)
+  const oInput = new ComponenteHTML('input')
+  oInput
+    .addClass('checkbox-filter')
+    .setAtributo({
+      type: 'checkbox',
+      name: oData.value
+    })
+    .prependTo(oItem.getObj())
+  oItem.on('click', e => {
+    oInput.setAtributo('checked', !oInput.getAtributo('checked'))
+    oInput.trigger('change')
+  })
+  return oItem
+}
+
+/**
+ * Cria a lista de filtros
+ * @param {Number} iType
+ * @param {Array} aItens
+ * @param {Function} fnOnClick
+ * @returns {ListaFiltros}
+ */
+function ListaFiltros(iType, aItens, fnOnClick) {
+  const oListaPesquisa = new ComponenteHTML('div')
+  oListaPesquisa.addClass('estrutura-context-list-filter')
+  // titulo e botão de fechar
+  const oHeader = new ComponenteHTML('header')
+  oHeader
+    .addClass('estrutura-data-container-header')
+    .appendTo(oListaPesquisa.getObj())
+  const oTitulo = new ComponenteHTML('h2')
+  const sTitulo =
+    iType === DataCell.TIPO_PESQUISA.LANGUAGE ? 'Language' : 'Type'
+  oTitulo
+    .addClass('estrutura-data-container-header-title')
+    .text(sTitulo)
+    .appendTo(oHeader.getObj())
+  const oFechar = new ComponenteHTML('button')
+  oFechar
+    .on('click', e => {
+      oListaPesquisa.remove()
+    })
+    .addClass('estrutura-data-container-header-close')
+    .appendTo(oHeader.getObj())
+  const oIcon = new ComponenteHTML('img')
+  oIcon
+    .setAtributos({
+      src: Icone.close,
+      alt: 'ícone de fechar menu de filtros'
+    })
+    .appendTo(oFechar.getObj())
+
+  const oList = new ComponenteHTML('ul')
+  oList
+    .addClass('estrutura-data-container-filter-list')
+    .appendTo(oListaPesquisa.getObj())
+
+  aItens.forEach(oDados => {
+    const oItem = new ItemLista(oDados)
+    oItem.on('click', fnOnClick)
+    oItem.appendTo(oList.getObj())
+  })
+
+  return oListaPesquisa
+}
+
+/**
+ *
+ */
+function criaAreaContext() {
+  const oAreaContext = new ComponenteHTML('section')
+  oAreaContext.addClass('estrutura-context-container').appendTo(oRoot)
+}
+
+/**
  * Cria a área de filtros e definições de tipos de repositórios do usuário
+ * @param {DataCell} oData
  * @returns {Object}
  */
-function criaAreaFiltros() {
+function criaAreaFiltros(oData) {
   const oFilter = new ComponenteHTML('header')
   oFilter
     .addClass('estrutura-data-container')
@@ -627,7 +878,7 @@ function criaAreaFiltros() {
   const oAmountRepo = new ComponenteHTML('span')
   oAmountRepo
     .addClass('estrutura-data-button-amount')
-    .text('0')
+    .text(oData.getAmountRepositories())
     .appendTo(oContentBtnRepo.getObj())
 
   // starreds
@@ -655,7 +906,7 @@ function criaAreaFiltros() {
   const oAmountStarred = new ComponenteHTML('span')
   oAmountStarred
     .addClass('estrutura-data-button-amount')
-    .text('0')
+    .text(oData.getAmountStarreds())
     .appendTo(oContentBtnStarred.getObj())
 
   // search area
@@ -729,7 +980,7 @@ function criaAreaFiltros() {
     .addClass('estrutura-campo-filter')
     .setAtributos({
       type: 'text',
-      placeholder: 'Search Here'
+      placeholder: 'Enter the repository name'
     })
     .appendTo(oDivSearch.getObj())
 
@@ -773,6 +1024,7 @@ function Card(oData) {
       'data-id': oData.id,
       title: `Clique aqui para abrir o repositório ${oData.title}`
     })
+    .addClass('estrutura-data-card-item')
     .on('click', e => {
       const sUrl = oData.url
       window.open(sUrl, '_blank')
@@ -798,6 +1050,7 @@ function Card(oData) {
   oReputation.appendTo(oDivReputation.getObj())
 
   if (oData.starred) {
+    oDivReputation.addClass('starred')
     oReputation.text(oData.language)
   } else {
     const oIconStarFilled = new ComponenteHTML('img')
@@ -807,9 +1060,10 @@ function Card(oData) {
         alt: 'ícone de favoritado'
       })
       .appendTo(oReputation.getObj())
+      .addClass('estrutura-data-card-reputation-info')
     oReputation
       .addClass('estrutura-data-card-reputation-info')
-      .text(oData.stars)
+      .appendText(oData.stars)
   }
   // forks
   const oForks = new ComponenteHTML('span')
@@ -822,7 +1076,7 @@ function Card(oData) {
     .appendTo(oForks.getObj())
   oForks
     .addClass('estrutura-data-card-reputation-info')
-    .text(oData.forks)
+    .appendText(String(oData.forks))
     .appendTo(oDivReputation.getObj())
 
   return oBase
@@ -835,6 +1089,7 @@ function Card(oData) {
  */
 function ComponenteGridCards(sId) {
   this.id = sId
+  this.obj
 
   function init() {
     this.obj = new ComponenteHTML('section')
@@ -842,23 +1097,42 @@ function ComponenteGridCards(sId) {
       .addClass('estrutura-data-container-cards')
       .setAtributo('data-id', sId)
   }
-  init()
 
   /**
    * Destrói o componente
    */
   this.destroy = function () {
     this.obj.remove()
+    this.obj = null
   }
+
+  init.apply(this)
 
   return this
 }
 
 /**
- *
- * @param {*} bInicial
+ * Responsável pela manipulação do componente grid e cards
+ * @param {String} sId
+ * @param {DataCell} oUserData
+ * @returns {ComponenteGridCards}
  */
-function criaAreaCards(sId) {}
+function DataGrid(sId, oUserData) {
+  this.grid = new ComponenteGridCards(sId)
+  this.cards = []
+  let aCards
+  if (sId === DataCell.TIPO_REPOSITORIO.REPOSITORIO) {
+    aCards = oUserData.getRepositories()
+  } else if (sId === DataCell.TIPO_REPOSITORIO.FAVORITO) {
+    aCards = oUserData.getStarreds()
+  }
+  aCards.forEach(oData => {
+    const oCard = new Card(oData)
+    this.cards.push(oCard)
+    oCard.appendTo(this.grid.obj.getObj())
+  })
+  return this
+}
 
 /**
  * Inicia o sistema
@@ -886,9 +1160,44 @@ async function iniciaSistema() {
   const oAside = criaUserProfile(oData.getUser())
   oAside.appendTo(oMain.getObj())
   // área de filtros
-  const oFilter = criaAreaFiltros()
+  const oFilter = criaAreaFiltros(oData)
+  oFilter.repo.button.addClass('active')
+  oFilter.repo.button.on('click', () => {
+    if (oFilter.repo.button.hasClass('active')) {
+      return
+    }
+    oFilter.repo.button.addClass('active')
+    oFilter.starred.button.removeClass('active')
+    oGrid.grid.destroy()
+    oGrid = new DataGrid(DataCell.TIPO_REPOSITORIO.REPOSITORIO, oData)
+    oGrid.grid.obj.appendTo(oMain.getObj())
+  })
+  oFilter.starred.button.on('click', () => {
+    if (oFilter.starred.button.hasClass('active')) {
+      return
+    }
+    oFilter.starred.button.addClass('active')
+    oFilter.repo.button.removeClass('active')
+    oGrid.grid.destroy()
+    oGrid = new DataGrid(DataCell.TIPO_REPOSITORIO.FAVORITO, oData)
+    oGrid.grid.obj.appendTo(oMain.getObj())
+  })
+
+  // obj: oFilter,
+  // repo: {
+  //   button: oBtnRepo,
+  //   amount: oAmountRepo
+  // },
+  // starred: {
+  //   button: oBtnStarred,
+  //   amount: oAmountStarred
+  // }
+
   oFilter.obj.appendTo(oMain.getObj())
+  const oContext = criaAreaContext()
   // área dos cards
-  criaAreaCards(true)
+  let oGrid = new DataGrid(DataCell.TIPO_REPOSITORIO.REPOSITORIO, oData)
+
+  oGrid.grid.obj.appendTo(oMain.getObj())
 }
 iniciaSistema()
