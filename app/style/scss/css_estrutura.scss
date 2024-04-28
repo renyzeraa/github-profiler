@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+input {
+  border: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.estrutura {
+  background-color: var(--color-base-bg-000);
+  font-family: var(--font-base-roboto);
+  font-size: 1.6rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container-global {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 0 2.4rem;
+}
+
+.estrutura-container {
+  display: grid;
+  margin-bottom: 2rem;
+}
+
+/* Tablet */
+@media only screen and (min-width: 728px) {
+  .container-global {
+    grid-auto-columns: 25rem 1fr;
+    grid-auto-rows: auto;
+  }
+}

@@ -1,0 +1,108 @@
+.estrutura-container-user-profile {
+  margin: 4rem auto 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  > .estrutura-container-user-avatar {
+    margin: 0 auto 1.6rem;
+    position: relative;
+
+    > .estrutura-container-user-avatar-image {
+      max-width: 10.4rem;
+      border-radius: 50%;
+    }
+
+    &::after {
+      content: '😎';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 30px;
+      height: 30px;
+      background-color: var(--color-base-bg-200);
+      border-radius: 50%;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+  }
+
+  > .estrutura-container-user-name {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 0.4rem;
+  }
+
+  > .estrutura-container-user-bio {
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.4rem;
+    color: var(--color-base-text-500);
+    margin-bottom: 2.4rem;
+    max-width: 21.7rem;
+  }
+
+  > .estrutura-container-user-button {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.6rem;
+
+    > .estrutura-container-user-button-icon.active {
+      transform: rotate(180deg);
+      transition: transform 1s;
+    }
+
+    > .estrutura-container-user-button-text {
+      color: var(--color-base-blue-400);
+      font-family: var(--font-base-roboto);
+      font-size: 1.4rem;
+    }
+  }
+
+  > .estrutura-container-user-extra-infos {
+    display: none;
+    margin-top: 1.4rem;
+    padding: 1.6rem;
+    border-radius: 1rem;
+    color: var(--color-base-blue-400);
+    background-color: var(--color-base-bg-300);
+
+    &.active {
+      display: block;
+    }
+
+    > .estrutura-container-user-list-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+
+      > .estrutura-container-user-list-info-item {
+        display: grid;
+        align-items: center;
+        grid-template-columns: 2rem 1fr;
+        gap: 0.5rem;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 728px) {
+  .container-global > .estrutura-container-user-profile {
+    grid-row: span 2;
+
+    > .estrutura-container-user-button {
+      display: none;
+    }
+
+    > .estrutura-container-user-extra-infos {
+      display: block;
+      background-color: transparent;
+    }
+  }
+}

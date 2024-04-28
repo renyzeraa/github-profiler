@@ -2,11 +2,6 @@
 
 ```
 
-> Separar as classes
- > Criar classes sem "hoisting"
-  > global
- > Reutilizar estilos
-
 > Criar todos os elementos via js
  > falta
   > a section
