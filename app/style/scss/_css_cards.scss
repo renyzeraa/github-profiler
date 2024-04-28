@@ -42,8 +42,14 @@
     }
 
     > .estrutura-data-card-reputation {
-      display: flex;
+      display: grid;
+      grid-template-columns: auto auto 1fr;
       gap: 3.2rem;
+
+      &.starred {
+        grid-template-columns: 9rem 1fr;
+        gap: 1.2rem;
+      }
 
       > .estrutura-data-card-reputation-info {
         display: flex;
