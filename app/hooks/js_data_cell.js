@@ -163,6 +163,17 @@ DataCell.TIPO_PESQUISA = {
    */
   LANGUAGE: 2
 }
+
+/**
+ * Constantes para definir o valor para lista de filtro tipo
+ */
+DataCell.FILTRO_TIPO = {
+  MIRROR: 4,
+  ARCHIVED: 3,
+  FORKS: 2,
+  SOURCES: 1
+}
+
 /**
  * Constante que define os tipos de filtros para pesquisar repositórios.
  * @readonly
@@ -176,7 +187,7 @@ DataCell.FILTRO_TIPOS = [
    * @property {string} title - O título do filtro.
    */
   {
-    value: 1,
+    value: DataCell.FILTRO_TIPO.SOURCES,
     title: 'Sources'
   },
   /**
@@ -186,7 +197,7 @@ DataCell.FILTRO_TIPOS = [
    * @property {string} title - O título do filtro.
    */
   {
-    value: 2,
+    value: DataCell.FILTRO_TIPO.FORKS,
     title: 'Forks'
   },
   /**
@@ -196,7 +207,7 @@ DataCell.FILTRO_TIPOS = [
    * @property {string} title - O título do filtro.
    */
   {
-    value: 3,
+    value: DataCell.FILTRO_TIPO.ARCHIVED,
     title: 'Archived'
   },
   /**
@@ -206,7 +217,7 @@ DataCell.FILTRO_TIPOS = [
    * @property {string} title - O título do filtro.
    */
   {
-    value: 4,
+    value: DataCell.FILTRO_TIPO.MIRROR,
     title: 'Mirrors'
   }
 ]

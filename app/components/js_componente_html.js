@@ -252,6 +252,26 @@ export function ComponenteHTML(sElement) {
   }
 
   /**
+   * Retorna o elemento anterior
+   * @returns {HTMLElement|null}
+   */
+  this.prev = function () {
+    return this.getObj().previousElementSibling
+  }
+
+  /**
+   * Retorna o primeiro filho do elemento html
+   * @returns {HTMLElement|null}
+   */
+  this.first = function () {
+    const oObj = this.getObj()
+    if (oObj.children.length > 0) {
+      return oObj.children[0]
+    }
+    return null
+  }
+
+  /**
    * Cria elemento html
    */
   function _init() {

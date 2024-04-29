@@ -46,7 +46,7 @@ export async function buscarDadosUsuarioGitHub(sName) {
        * @returns
        */
       function formatarString(str) {
-        return str.replace(/-/g, ' ').replace(/\b\w/g, function (match) {
+        return str.replace(/[-_]/g, ' ').replace(/\b\w/g, function (match) {
           return match.toUpperCase()
         })
       }
@@ -62,7 +62,8 @@ export async function buscarDadosUsuarioGitHub(sName) {
         language: oData.language,
         open_issues: oData.open_issues_count,
         archived: oData.archived,
-        starred: oUser.login !== oData.owner.login
+        starred: oUser.login !== oData.owner.login,
+        mirror: oData.mirror_url !== null
       }
     }
     return {

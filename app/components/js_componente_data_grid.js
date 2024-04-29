@@ -8,15 +8,9 @@ import { Card } from './js_componente_card.js'
  * @param {DataCell} oUserData
  * @returns {ComponenteGridCards}
  */
-export function DataGrid(sId, oUserData) {
+export function DataGrid(sId, aCards) {
   this.grid = new ComponenteGridCards(sId)
   this.cards = []
-  let aCards
-  if (sId === DataCell.TIPO_REPOSITORIO.REPOSITORIO) {
-    aCards = oUserData.getRepositories()
-  } else if (sId === DataCell.TIPO_REPOSITORIO.FAVORITO) {
-    aCards = oUserData.getStarreds()
-  }
   aCards.forEach(oData => {
     const oCard = new Card(oData)
     this.cards.push(oCard)
