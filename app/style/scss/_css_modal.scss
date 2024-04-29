@@ -1,0 +1,53 @@
+.estrutura-modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  .estrutura-modal-content {
+    background-color: var(--color-base-bg-200);
+    margin: 15% auto;
+    padding: 2rem;
+    width: 80%;
+    max-width: 40rem;
+    border-radius: 0.8rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.8rem 0;
+
+    > .estrutura-modal-title {
+      font-size: 2rem;
+      grid-column: 1 / -1;
+    }
+
+    > .estrutura-modal-text {
+      font-size: 1.4rem;
+      grid-column: 1 / -1;
+    }
+
+    > .estrutura-modal-input {
+      padding: 0.8rem;
+      font-family: var(--font-base-roboto);
+      font-size: 1.8rem;
+      border-bottom: 1px solid var(--color-base-text-300);
+      background-color: transparent;
+
+      &:focus-visible {
+        outline: var(--color-base-blue-400) auto 1px;
+      }
+
+      &.campo-invalido {
+        border: 0.2rem solid var(--color-base-red-800);
+        border-radius: 0.4rem;
+      }
+    }
+
+    > .estrutura-modal-button {
+      border-bottom: 1px solid var(--color-base-text-300);
+      padding: 0 0.5rem;
+    }
+  }
+}
