@@ -33,11 +33,25 @@ Este projeto é uma aplicação web que permite aos usuários pesquisar por um n
 
 ## Instalação e Uso
 
-Clone o repositório do projeto do GitHub para o seu computador.
-Navegue até o diretório do projeto.
-Abra a aplicação no seu navegador e você será direcionado para o modal inicial.
-Insira o nome de usuário do GitHub e envie a consulta.
-Após enviar a consulta com sucesso, você será direcionado para a página de resultados, onde poderá ver os repositórios do usuário e suas informações de perfil.
+1. Primeiro, você precisa obter o URL do repositório ''https://github.com/renyzeraa/github-profiler.git''
+2. Abra o terminal/powershell ou a linha de comando no seu sistema operacional. Você pode encontrar o terminal em diferentes locais, dependendo do seu sistema operacional
+3. Use o comando cd (change directory) para navegar até o diretório onde deseja clonar o repositório. Por exemplo:
+
+```
+cd pasta/de/destino
+```
+
+Substitua pasta/de/destino pelo caminho do diretório onde deseja colocar o projeto clonado. 4. Agora, você pode usar o comando git clone seguido pelo URL do repositório que você copiou anteriormente. Por exemplo:
+
+```
+git clone https://github.com/usuario/github-profiler.git
+
+```
+
+5. Depois que o comando git clone for concluído, o projeto será clonado para o diretório de destino que você especificou. Você pode verificar isso navegando até o diretório do projeto clonado usando o comando cd e, em seguida, listar o conteúdo do diretório usando o comando ls (no MacOS e Linux) ou dir (no Windows).
+
+6. Abrindo o projeto no vscode, inicialize ele com a extensão LiveServer (caso não tenha, basta ir na aba extensões e baixar, ou acesse https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer, baixe e instale via vsix)
+   6.1. Caso não saiba, no rodapé do vscode possui um ícone com nome "Go Live", este inicia o live server e ira iniciar o projeto.
 
 ## Contribuindo
 
