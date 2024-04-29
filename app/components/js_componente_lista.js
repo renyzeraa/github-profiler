@@ -11,8 +11,12 @@ import { ItemLista } from './js_item_lista.js'
  * @returns {ListaFiltros}
  */
 export function ListaFiltros(iType, aItens, fnOnClick) {
+  const aLista = []
+
   const oListaPesquisa = new ComponenteHTML('div')
-  oListaPesquisa.addClass('estrutura-context-list-filter')
+  oListaPesquisa
+    .addClass('estrutura-context-list-filter')
+    .setAtributo('data-tipo', iType)
   // titulo e botão de fechar
   const oHeader = new ComponenteHTML('header')
   oHeader
@@ -47,9 +51,46 @@ export function ListaFiltros(iType, aItens, fnOnClick) {
 
   aItens.forEach(oDados => {
     const oItem = new ItemLista(oDados)
-    oItem.on('click', fnOnClick)
+    aLista.push(oItem)
+    oItem.on('click', () => {
+      fnOnClick(oListaPesquisa)
+    })
     oItem.appendTo(oList.getObj())
   })
+
+  /**
+   * Retorna os valores selecionados da lista
+   * @returns {Array}
+   */
+  oListaPesquisa.getValores = function () {
+    const aVal = []
+    aLista.forEach(oItem => {
+      let oInput = oItem.first()
+      if (oInput.instance) {
+        oInput = oInput.instance
+      }
+      if (oInput.getAtributo('checked') === 'true') {
+        aVal.push(oInput.getAtributo('name'))
+      }
+    })
+    return aVal
+  }
+
+  /**
+   * Define os valores da lista
+   * @param {Array<string|number>} aVal
+   */
+  oListaPesquisa.setValores = function (aVal) {
+    aLista.forEach(oItem => {
+      let oInput = oItem.first()
+      if (oInput.instance) {
+        oInput = oInput.instance
+      }
+      if (aVal.includes(oInput.getAtributo('name'))) {
+        oInput.setAtributo('checked', true)
+      }
+    })
+  }
 
   return oListaPesquisa
 }

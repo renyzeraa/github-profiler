@@ -1,4 +1,4 @@
-import { Loading } from './../components/js_loading.js'
+import { Loading } from './../components/js_componente_loading.js'
 import { DataCell } from './js_data_cell.js'
 import { buscarDadosUsuarioGitHub } from './js_get_user.js'
 import { criaHeader } from './../components/js_header.js'
@@ -39,8 +39,11 @@ export async function iniciaSistema(sUser = 'diego3g') {
   oAside.appendTo(oMain.getObj())
 
   // área dos cards inicial
-  let oGrid = new DataGrid(DataCell.TIPO_REPOSITORIO.REPOSITORIO, oData)
+  let oGrid = new DataGrid(
+    DataCell.TIPO_REPOSITORIO.REPOSITORIO,
+    oData.getRepositories()
+  )
   // área de filtros
-  new ComponenteFiltros(oData, oMain, oGrid, oLoading)
+  new ComponenteFiltros(oData, oMain, oGrid)
   oGrid.grid.obj.appendTo(oMain.getObj())
 }

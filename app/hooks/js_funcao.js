@@ -23,6 +23,7 @@ export const Funcao = {
     }
     return false
   },
+
   async verificarUsuario(sUser) {
     try {
       const response = await fetch(`https://api.github.com/users/${sUser}`)
