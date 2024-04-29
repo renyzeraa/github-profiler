@@ -75,6 +75,7 @@
 
     &.active {
       display: block;
+      animation: slideFromleft 0.8s forwards;
     }
 
     > .estrutura-container-user-list-info {
