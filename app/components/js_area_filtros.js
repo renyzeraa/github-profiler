@@ -141,10 +141,6 @@ export function criaAreaFiltros(oData) {
     })
     .appendTo(oBtnSearch.getObj())
 
-  /**
-   * @TODO Não consegui fazer a tempo a pesquisa...
-   */
-
   // input text search
   const oInputSearch = new ComponenteHTML('input')
   oInputSearch
