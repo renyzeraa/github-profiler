@@ -24,6 +24,8 @@ Este projeto é uma aplicação web que permite aos usuários pesquisar por um n
 4. Filtros:
 
 > Acima dos cartões de repositórios, existe uma área de filtros.
+> Somente é possível pesquisar pelo título e descrição através de um tablet ou computador
+> No campo de pesquisa basta inserir o nome do repositório que deseja e clicar enter!
 
 5. Os filtros disponíveis incluem:
 
